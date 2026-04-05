@@ -14,7 +14,6 @@
     transition: transform var(--transition-fast),
                 box-shadow var(--transition-fast),
                 opacity 280ms ease,
-                background var(--transition-fast);
 }
 
 .task-card:hover {
@@ -38,6 +37,38 @@
     opacity: 0;
     transform: translateX(-14px);
     pointer-events: none;
+}
+
+.task-delete-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity var(--transition-fast),
+                transform var(--transition-fast),
+                background var(--transition-fast),
+                color var(--transition-fast);
+}
+
+.task-card:hover .task-delete-button {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.task-delete-button:hover {
+    background: rgba(239, 68, 68, 0.10);
+    color: #EF4444;
 }
 
 /*ADD TASK SHEET */
