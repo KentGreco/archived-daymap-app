@@ -1,0 +1,2 @@
+// DAYMAP - Utilities
+// Global functions
