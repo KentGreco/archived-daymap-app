@@ -4,8 +4,61 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DAYMAP</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!--DAYMAP Styles-->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
 </head>
 <body>
-  <!-- DAYMAP app loads -->
+  <!-- HEADER -->
+   <header id="app-header">
+    <div id="logo">DAYMAP</div>
+    <div id="current-date"></div>
+    <div id="settings-icon">⚙️</div>
+   </header>
+
+   <!--MAIN CONTENT-->
+   <main id="app-main">
+
+    <!-- LEFT PANEL (TIMELINE)-->
+    <section id="timeline-panel">
+      <h2>Today's Schedule</h2>
+      <div id="task-list">
+        <!--Task cards render here-->
+      </div>    
+    </section>
+
+    <!-- RIGHT PANEL (MAP)-->
+    <section id="map-panel">
+      <div id="map-controls">
+        <div id="mode-toggle">
+          <button id ="drive-button" class="active">Drive</button>
+          <button id="transit-button">Transit</button>
+        </div>
+        <button id="plan-route-button">Plan My Route</button>
+      </div>
+      <div id="map"></div>
+    </section>
+
+   </main>
+
+   <!-- ADD BUTTON-->
+    <button id="add-task-button">+</button>
+
+    <!-- Leaflet.js -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- DAYMAP SCRIPTS-->
+     <script src="js/utils.js"></script>
+     <script src="js/data.js"></script>
+     <script src="js/tasks.js"></script>
+     <script src="js/map.js"></script>
+     <script src="js.router.js"></script>
+     <script src="js/nominatim.js"></script>
+     <script src="js/app.js"></script>
 </body>
 </html>
