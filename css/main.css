@@ -28,10 +28,10 @@ body {
     overflow: hidden;
 }
 
-#header {
+#app-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 0 24px;
     background: var(--surface);
     border-bottom: 1px solid #E2E8F0;
