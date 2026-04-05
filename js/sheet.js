@@ -5,7 +5,7 @@
 const addCard = document.getElementById('add-task-card');
 const sheet = document.getElementById('add-task-sheet');
 const overlay = document.getElementById('sheet-overlay');
-const closeButton = document.getElementById('close-sheet-button');
+const closeButton = document.getElementById('sheet-close');
 
 function openSheet() {
     sheet.classList.add('open');
@@ -31,7 +31,7 @@ closeButton.addEventListener('click', closeSheet);
 overlay.addEventListener('click', closeSheet);
 
 //Delete on hover logic
-document.querySelectorAll('task-delete-button').forEach(btn => {
+document.querySelectorAll('.task-delete-button').forEach(btn => {
     btn.addEventListener('click', function(e) {
         e.stopPropagation();
         const card = this.closest('.task-card');

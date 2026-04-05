@@ -1,1 +1,159 @@
 /* DAYMAP - Components: task cards, buttons, task sheet */
+
+.task-card {
+    position: relative;
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    padding: 13px 14px 13px 17px;
+    margin-bottom: 9px;
+    border: 1px solid var(--border);
+    border-left: 3.5px solid transparent;
+    box-shadow: var(--shadow-card);
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform var(--transition-fast),
+                box-shadow var(--transition-fast),
+                opacity 280ms ease,
+                background var(--transition-fast);
+}
+
+.task-card:hover {
+    transform: translate(3px, -1px);
+    box-shadow: var(--shadow-md);
+}
+
+.task-card.category-assignment { border-left-color: var(--color-assignment); }
+.task-card.category-work {border-left-color: var(--color-work);}
+.task-card.category-event {border-left-color: var(--color-event);}
+.task-card.category-errand {border-left-color: var(--color-errand);}
+.task-card.category-personal {border-left-color: var(--color-personal);}
+
+.task-card.active {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, white 55%);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(37, 99, 235, 0.20);
+}
+
+.task-card.removing {
+    opacity: 0;
+    transform: translateX(-14px);
+    pointer-events: none;
+}
+
+/*ADD TASK SHEET */
+
+.category-uis {
+    display:flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.category-ui {
+    padding: 6px 13px;
+    border-radius: 50px;
+    border: 1.5px solid var(--border);
+    background: transparent;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+    letter-spacing: 0.1px;
+}
+
+.category-ui:hover {
+    border-color: rgba(37, 99, 235, 0.30);
+    color: var(--primary);
+    background: rgba(37, 99, 235, 0.05);
+}
+
+.category-ui.selected{
+    background: var(--grad-primary);
+    color: white;
+    border-color: transparent;
+    box-shadow: var(--shadow-pill);
+}
+
+.sheet-input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    color: var(--text);
+    background: var(--background);
+    outline: none;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.sheet-input::placeholder {color: var(--text-muted);}
+
+.sheet-input:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+    background: var(--surface);
+}
+
+.sheet-row {
+    display: flex;
+    gap: 10px;
+}
+
+.sheet-input.half {
+    width: 50%;
+    flex: 1;
+}
+
+.sheet-location-wrap { position: relative; }
+
+#location-suggestions {
+    position: absolute;
+    top: calc(100% - 10px);
+    left: 0; right: 0;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    z-index: 50;
+    max-height: 140px;
+    overflow-y: auto;
+}
+
+.location-suggestion-item {
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--text);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+    border-bottom: 1px solid var(--border);
+}
+
+.location-suggestion-item:last-child { border-bottom: none; }
+
+.location-suggestion-item:hover{background: rgba(37, 99, 235, 0.06);}
+
+textarea.sheet-input {
+    resize: none;
+    line-height: 1.5;
+}
+
+.sheet-save-button {
+    width: 100%;
+    padding: 10px;
+    background: var(--grad-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    box-shadow: var(--shadow-pill);
+    margin-top: 6px;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
