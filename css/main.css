@@ -1,2 +1,79 @@
 /* DAYMAP - Main Styles */
 /* Primary: #2563EB | Accent: #F97316 | Background: #F8FAFC */
+* {
+    margin: o;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #2563EB;
+    --accent: #F97316;
+    --background: #F8FAFC;
+    --surface: ##FFFFFF;
+    --text: #1E293B;
+    --text-muted: #64748B;
+    --color-assignment: #2563EB;
+    --color-work: #F97316;
+    --color-event: #34D399;
+    --color-erramd: #FBBF24;
+    --color-personal: #A78BFA;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    height: 100vh;
+    overflow: hidden;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    background: var(--surface);
+    border-bottom: 1px solid #E2E8F0;
+}
+
+#logo {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--primary);
+    letter-spacing: 1px;
+}
+
+#current-date {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+#add-task-button {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    font-size: 28px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    z-index: 1000;
+}
+
+#plan-route-button {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size:15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+}
