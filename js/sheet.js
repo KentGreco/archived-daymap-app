@@ -6,6 +6,7 @@ const addCard = document.getElementById("add-task-card");
 const sheet = document.getElementById("add-task-sheet");
 const overlay = document.getElementById("sheet-overlay");
 const closeButton = document.getElementById("sheet-close");
+const saveButton = document.getElementById('sheet-save');
 
 function openSheet() {
     sheet.classList.add("open");
@@ -31,7 +32,7 @@ function clearSheet() {
     document.querySelector('.category-ui[data-cat="assignment"]').classList.add('selected');
 }
 
-saveBtn.addEventListener("click", function() {
+saveButton.addEventListener("click", function() {
     const title = document.getElementById("sheet-title").value.trim();
     if (!title) {
         const input = document.getElementById("sheet-title");
