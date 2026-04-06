@@ -46,5 +46,5 @@ function deleteTask(id) {
 function getTodaysTasks() {
     const today = new Date().toISOString().split("T")[0];
     const tasks = getAllTasks();
-    return tasks.filter(t => t.date === today || t.day === "");
+    return tasks.filter(t => t.date === today || t.date === "");
 }

@@ -24,7 +24,7 @@ function renderTimeline() {
 }
 
 function updateTaskCount() {
-    const countEl = document.getElementById("task-coount");
+    const countEl = document.getElementById("task-count");
     if (!countEl) return;
     const count = document.querySelectorAll(".task-card").length;
     countEl.textContent = count === 1 ? "1 task" : `${count} tasks`;

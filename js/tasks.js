@@ -50,7 +50,7 @@ function createTaskCard(task) {
     }
 
     const code = document.createElement("div");
-    code.className = "task-category-code ${task.category}";
+    code.className = `task-category-code ${task.category}`;
     code.textContent = task.category.charAt(0).toUpperCase() + task.category.slice(1);
     card.appendChild(code);
 

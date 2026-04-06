@@ -19,6 +19,7 @@ function closeSheet() {
     sheet.classList.remove("open");
     sheet.setAttribute("aria-hidden", "true");
     overlay.classList.remove("visible");
+    document.getElementById("add-task-card").focus();
 }
 
 function clearSheet() {
