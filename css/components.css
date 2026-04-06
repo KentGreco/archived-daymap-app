@@ -71,6 +71,85 @@
     color: #EF4444;
 }
 
+.task-time {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.task-title {
+    font-family: var(--font-display);
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.35;
+    margin-bottom: 5px;
+    padding-right: 30px;
+}
+
+.task-location {
+    display:flex;
+    align-items:center;
+    gap:5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.task-category-badge {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: var(--radius-pill);
+    text-transform: uppercase;
+    transition: opacity var(--transition-fast);
+}
+
+.task-card:hover .task-category-code {
+    opacity: 0.25
+}
+
+.task-category-code.assignment {
+    background: rgba(37,99,235,0.09);
+    color: var(--color-assignment);
+    border: 1px solid rgba(37,99,235,0.16);
+}
+
+.task-category-code.work {
+    background: rgba(249,115,22,0.09);
+    color:var(--color-work);
+    border:1px solid rgba(249,115,22,0.16);
+}
+
+.task-category-code.event {
+    background: rgba(16,185,129,0.09);
+    color: var(--color-event);
+    border:1px solid rgba(16, 185, 129, 0.16)
+}
+
+.task-category-code.personal {
+    background: rgba(139,92,246,0.09);
+    color:var(--color-personal);
+    border:1px solid rgba(139,92,246,0.16);
+}
+
+.task-card.deadline-today {
+    border-left-color: #EF4444;
+    background: linear-gradient(135deg, rgba(239,68,68,0.04) 0%, white 50%)
+}
+
+.task-card.deadline-tomorrow {
+    border-left-color: #F59E0B;
+    background: linear-gradient(135deg, rgba(245,158,11,0.04) 0%, white 50%);
+}
+
 /*ADD TASK SHEET */
 
 .category-uis {
