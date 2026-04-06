@@ -2,10 +2,13 @@
 // Source for all app logic
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Display today date in header
     const dateEl = document.getElementById("current-date");
     const today = new Date();
-    dateEl.textContent = today.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+    dateEl.textContent = today.toLocaleDateString("en-US", {
+        weekday: "long", year: "numeric", month: "long", day: "numeric"
+    });
 
     initMap();
-});
+
+    renderTimeline();
+})

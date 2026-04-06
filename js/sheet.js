@@ -20,31 +20,56 @@ function closeSheet() {
     overlay.classList.remove("visible");
 }
 
-addCard.addEventListener("click", openSheet);
-addCard.addEventListener("keydown", e=> {
-    if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        openSheet();
+function clearSheet() {
+    document.getElementById("sheet-title").value = "";
+    document.getElementById("sheet-date").value = "";
+    document.getElementById("sheet-time").value = "";
+    document.getElementById("sheet-location").value = "";
+    document.getElementById("sheet-priority").value = "";
+    document.getElementById("sheet-notes").value = "";
+    document.querySelectorAll(".category-ui").forEach(p => p.classList.remove("selected"));
+    document.querySelector('.category-ui[data-cat="assignment"]').classList.add('selected');
+}
+
+saveBtn.addEventListener("click", function() {
+    const title = document.getElementById("sheet-title").value.trim();
+    if (!title) {
+        const input = document.getElementById("sheet-title");
+        input.style.borderColor = "#EF4444";
+        input.focus();
+        setTimeout(() => input.style.borderColor = "", 1500);
+        return;
     }
-});
-closeButton.addEventListener("click", closeSheet);
-overlay.addEventListener("click", closeSheet);
 
-//Delete on hover logic
-document.querySelectorAll(".task-delete-button").forEach(btn => {
-    btn.addEventListener("click", function(e) {
-        e.stopPropagation();
-        const card = this.closest(".task-card");
-        card.classList.add("removing");
-        setTimeout(() => card.remove(), 280);
-    });
+    const selectedCat = document.querySelector(".category-ui.selected");
+
+    const taskData = {
+        title: title,
+        category: selectedCat ? selectedCat.dataset.cat : "personal",
+        date: document.getElementById("sheet-date").value,
+        time: document.getElementById("sheet-time").value,
+        locationName: document.getElementById("sheet-location").value.trim(),
+        priority: document.getElementById("sheet-priority").value,
+        notes: document.getElementById("sheet-notes").value.trim()
+    };
+
+    addTask(taskData);
+    renderTimeline();
+    clearSheet();
+    closeSheet();
 });
 
-//Category UI logic
-document.querySelectorAll(".category-ui").forEach(ui => {
-    ui.addEventListener("click", function() {
+// Category pill switching
+document.querySelectorAll(".category-ui").forEach(pill => {
+    pill.addEventListener("click", function() {
         document.querySelectorAll(".category-ui").forEach(p => p.classList.remove("selected"));
         this.classList.add("selected");
-        document.getElementById("sheet-rate").style.display = this.dataset.cat === "work" ? "block" : "none";
     });
 });
+
+addCard.addEventListener("click", openSheet);
+addCard.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openSheet(); }
+});
+closeBtn.addEventListener("click", closeSheet);
+overlay.addEventListener("click", closeSheet);
