@@ -3,7 +3,7 @@
 
 function formatTime(timeStr) {
     if (!timeStr) return "";
-    const [h, m] = timeStr.split(":").map(number);
+    const [h, m] = timeStr.split(":").map(Number);
     const period = h>=12 ? "PM" : "AM";
     const hour = h % 12 || 12;
     return `${hour}:${m.toString().padStart(2, '0')} ${period}`;

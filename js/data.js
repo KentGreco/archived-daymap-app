@@ -19,7 +19,7 @@ function getAllTasks() {
 
 function saveTasks(tasks) {
     try {
-        localStorage.setItem(STORATE_KEY, JSON.stringify(tasks));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
     } catch (e) {
         console.error("Error saving tasks:", e);
     }
@@ -34,13 +34,13 @@ function addTask(taskData) {
         notes: taskData.notes||"", completed: false, createdAt: new Date().toISOString()
     };
     tasks.push(newTask);
-    saveTasks(task);
+    saveTasks(tasks);
     return newTask;
 }
 
 function deleteTask(id) {
     const tasks = getAllTasks().filter(t => t.id !== id);
-    saveTasks(task);
+    saveTasks(tasks);
 }
 
 function getTodaysTasks() {

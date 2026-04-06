@@ -72,5 +72,5 @@ addCard.addEventListener("click", openSheet);
 addCard.addEventListener("keydown", e => {
     if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openSheet(); }
 });
-closeBtn.addEventListener("click", closeSheet);
+closeButton.addEventListener("click", closeSheet);
 overlay.addEventListener("click", closeSheet);
