@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function() {
         sheet.classList.add("open");
         sheet.setAttribute("aria-hidden", "false");
         overlay.classList.add("visible");
+        const todayStr = new Date().toISOString().split('T')[0];
+        document.getElementById("sheet-date").value = todayStr;
         setTimeout(() => document.getElementById("sheet-title").focus(), 300);
     }
 
