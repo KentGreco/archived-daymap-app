@@ -31,8 +31,8 @@
   --text-muted:       #94A3B8;
   
   /* Gradients */
-  --grad-primary:   linear-gradient(135deg, #F97316 0%, #FBBF24 100%);
-  --grad-accent:    linear-gradient(135deg, #EF4444 0%, #F97316 100%);
+  --grad-primary:   linear-gradient(135deg, #E85509 0%, #FCB869 100%);
+  --grad-accent:    linear-gradient(135deg, #3059C3 0%, #5183E2 100%);
   --grad-header:    linear-gradient(180deg, #FFFBF5 0%, #FEF3E2 100%);
   --grad-panel:     linear-gradient(170deg, #FFFBF5 0%, #FEF3E2 100%);
   --background:     #FEF9F0;
