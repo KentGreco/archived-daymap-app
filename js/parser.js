@@ -63,6 +63,8 @@ function parseTaskInput(rawText) {
     const text = rawText.trim();
     const now = new Date();
 
+    console.log('Parsing:', text); // DEBUG
+
     // Use chrono-node to parse date and time from the text
     let parsedDate = '';
     let parsedTime = '';
@@ -70,6 +72,8 @@ function parseTaskInput(rawText) {
 
     try {
         chronoResults = chrono.parse(text, now, { forwardDate: true });
+        console.log('Chrono results:', chronoResults); // DEBUG
+
 
         if (chronoResults.length > 0) {
             const first = chronoResults[0].start;
@@ -92,9 +96,37 @@ function parseTaskInput(rawText) {
         console.warn('Chrono parse error:', e);
     }
 
+    // Fallback
+    if (!parsedTime && !parsedDate) {
+        const timeMatch = text.match(/at\s+(\d{1,2})(?::(\d{2}))?\s*(am|pm)?\s*(today|tomorrow)?/i);
+        if (timeMatch) {
+            let hour = parseInt(timeMatch[1]);
+            const minStr = timeMatch[2];
+            const min = minStr ? parseInt(minStr) : 0;
+            const period = timeMatch[3] ? timeMatch[3].toLowerCase() : '';
+            const dayRef = timeMatch[4] ? timeMatch[4].toLowerCase() : '';
+
+            if (period === 'pm' && hour !== 12) hour += 12;
+            if (period === 'am' && hour === 12) hour = 0;
+
+            parsedTime = `${String(hour).padStart(2, '0')}:${String(min).padStart(2, '0')}`;
+            console.log('Regex fallback time:', parsedTime, 'dayRef:', dayRef); // DEBUG
+
+            let fallbackDate = now.toISOString().split('T')[0];
+            if (dayRef === 'tomorrow') {
+                const tomorrow = new Date(now.getTime() + 86400000);
+                fallbackDate = tomorrow.toISOString().split('T')[0];
+            }
+            parsedDate = fallbackDate;
+        }
+    }
+
     const category     = detectCategory(text);
     const locationName = extractLocation(text);
     const title        = cleanTitle(text, chronoResults);
+
+    console.log('Final output:', {parsedDate, parsedTime, title, category, locationName}); // DEBUG
+
 
     return {
         title,

@@ -526,17 +526,6 @@ textarea.sheet-input {
 
 /* Location Input */
 
-#sheet-location {
-    /* Remove browser autofill underline */
-    background-image: none !important;
-    -webkit-text-decoration: none;
-    text-decoration: none;
-
-    /* Remove the blue bottom border some browsers inject */
-    border-bottom: none !important;
-    box-shadow: none;
-}
-
 #sheet-location::-webkit-contacts-auto-fill-button,
 #sheet-location::-webkit-credentials-auto-fill-button {
     display: none !important;
