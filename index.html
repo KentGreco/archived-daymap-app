@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,9 @@
   <!--Google Fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
   <!-- Leaflet CSS -->
@@ -19,17 +22,19 @@
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
 
+
   <!--PARSER (chrono-node CDN)-->
   <script src="https://cdn.jsdelivr.net/npm/chrono-node@2.7.0/dist/chrono.min.js"></script>
 </head>
+
 <body>
 
   <!-- HEADER -->
-   <header id="app-header">
+  <header id="app-header">
     <div id="header-left">
-        <div id="logo-mark">
-        <img src="images/daymap-logo.png" alt="DAYMAP Logo" id="logo-image" width="35"> 
-        </div>
+      <div id="logo-mark">
+        <img src="images/daymap-logo.png" alt="DAYMAP Logo" id="logo-image" width="35">
+      </div>
       <div id="logo">DAYMAP</div>
     </div>
 
@@ -38,10 +43,10 @@
     <div id="settings-icon" aria-label="Settings">
       <i data-lucide="settings" width="22" height="22"></i>
     </div>
-   </header>
+  </header>
 
-   <!--MAIN CONTENT-->
-   <main id="app-main">
+  <!--MAIN CONTENT-->
+  <main id="app-main">
     <!-- LEFT PANEL (TIMELINE)-->
     <section id="timeline-panel">
       <div id="timeline-header">
@@ -50,25 +55,25 @@
       </div>
       <div id="task-list">
         <div id="add-task-card" role="button" tabindex="0" aria-label="Add a new task">
-        <div id="add-task-card-icon">
-          <i data-lucide="plus" width="18" height="18"></i>
+          <div id="add-task-card-icon">
+            <i data-lucide="plus" width="18" height="18"></i>
+          </div>
+          <span id="add-task-label">Add Task</span>
         </div>
-        <span id="add-task-label">Add Task</span>
       </div>
-      </div>    
     </section>
 
     <!-- RIGHT PANEL (MAP + TASK SHEET)-->
     <section id="map-panel">
       <div id="map-controls">
         <div id="mode-toggle">
-          <button id ="drive-button" class="mode-button active">
+          <button id="drive-button" class="mode-button active">
             <i data-lucide="car" width="15" height="15"></i>
             Drive</button>
           <button id="transit-button" class="mode-button">
             <i data-lucide="bus" width="15" height="15"></i>
             Transit</button>
-          </div>
+        </div>
         <button id="plan-route-button">
           <i data-lucide="map-pin" width="15" height="15"></i>
           Plan My Route</button>
@@ -80,107 +85,227 @@
       <div id="sheet-overlay"></div>
 
       <div id="add-task-sheet" aria-hidden="true">
+        <div class="sheet-handle"></div>
         <div class="sheet-inner">
-          <div class="sheet-handle"></div>
-          <div class="sheet-inner">
-            <!-- Top row -->
-             <div class="sheet-top-row">
-              <h3 class="sheet-title">New Task</h3>
-              <button class="sheet-close-button" id="sheet-close" aria-label="Close">
-                <i data-lucide="x" width="18" height="18"></i>
+
+          <!--  Top row  -->
+          <div class="sheet-top-row">
+            <h3 class="sheet-title">New Task</h3>
+            <button class="sheet-close-button" id="sheet-close" aria-label="Close">
+              <i data-lucide="x" width="18" height="18"></i>
+            </button>
+          </div>
+
+          <!--  Quick-add parser  -->
+          <div class="quick-add-row">
+            <input type="text" id="quick-add-input" class="sheet-input" placeholder='Try: "guitar lesson tomorrow 4pm"'
+              autocomplete="off" />
+            <button id="quick-parse-btn" class="quick-parse-btn">→</button>
+          </div>
+          <div class="quick-add-divider"><span>or fill manually</span></div>
+
+          <!-- Recent chips  -->
+          <div id="recent-chips" style="display:none;"></div>
+
+          <!-- CATEGORIES ROW 
+       "Categories" label + saved category chips
+       + a "＋" chip to open the category creator
+   -->
+          <div class="categories-section">
+            <span class="categories-section-label">Categories</span>
+            <div id="category-chips-row">
+              <!-- User-created category chips render here via JS -->
+              <!-- Plus chip always at the end -->
+              <button id="add-category-chip" class="category-add-chip" aria-label="Add category">
+                <i data-lucide="plus" width="13" height="13"></i>
+                New
               </button>
             </div>
-            <!-- Quick-add natural language input -->
-             <div class="quick-add-row">
-              <input type="text" id="quick-add-input" class="sheet-input"
-              placeholder="Type your task" autocomplete="off"/>
-              <button id="quick-parse-btn" class="quick-parse-btn">→</button>
+          </div>
+
+          <!--  Task title  -->
+          <input class="sheet-input" type="text" placeholder="Task title" id="sheet-title" autocomplete="off" />
+
+          <!--  Date + Time pickers  -->
+          <div class="pickers-row">
+
+            <!-- DATE: shows selected date; click opens sliding calendar -->
+            <div class="custom-date-picker" id="custom-date-picker">
+              <button class="date-arrow" id="date-prev">&#8592;</button>
+              <button id="date-display-btn" class="date-display-btn">
+                <i data-lucide="calendar" width="13" height="13"></i>
+                <span id="date-display">—</span>
+              </button>
+              <button class="date-arrow" id="date-next">&#8594;</button>
             </div>
-            <div class="quick-add-divider"><span>or fill manually</span></div>
-            <!-- Recent task chips -->
-             <div id="recent-chips" style="display:none;"></div>
-             <!-- Category pills -->
-              <div class="category-uis">
-                <button class="category-ui selected" data-cat="assignment">Assignment</button>
-                <button class="category-ui" data-cat="work">Work</button>
-                <button class="category-ui" data-cat="event">Event</button>
-                <button class="category-ui" data-cat="errand">Errand</button>
-                <button class="category-ui" data-cat="personal">Personal</button>
+
+
+
+            <!-- TIME PICKER: hour : minute + AM/PM -->
+            <div class="custom-time-picker" id="custom-time-picker">
+              <div class="time-drum">
+                <button class="time-drum-btn" id="hour-up">▲</button>
+                <span class="time-drum-value" id="time-hour">12</span>
+                <button class="time-drum-btn" id="hour-down">▼</button>
               </div>
-              <!-- Task title -->
-               <input class="sheet-input" type="text" placeholder="Task title" id="sheet-title" autocomplete="off"/>
-               <!-- Custom Date + Time pickers side by side -->
-                <div class="pickers-row">
-                  <!-- DATE PICKER -->
-                   <div class="custom-date-picker" id="custom-date-picker">
-                    <button class="date-arrow" id="date-prev" aria-label="Previous day">&#8592;</button>
-                    <div id="date-display">—</div>
-                    <button class="date-arrow" id="date-next" aria-label="Next day">&#8594;</button>
-                  </div>
-                  <!-- TIME PICKER -->
-                   <div class="custom-time-picker" id="custom-time-picker">
-                    <!-- Hour drum -->
-                     <div class="time-drum">
-                      <button class="time-drum-btn" id="hour-up" aria-label="Hour up">▲</button>
-                      <span class="time-drum-value" id="time-hour">12</span>
-                      <button class="time-drum-btn" id="hour-down" aria-label="Hour down">▼</button>
-                    </div>
-                    <span class="time-separator">:</span>
-                    <!-- Minute drum -->
-                     <div class="time-drum">
-                      <button class="time-drum-btn" id="min-up" aria-label="Minute up">▲</button>
-                      <span class="time-drum-value" id="time-minute">00</span>
-                      <button class="time-drum-btn" id="min-down" aria-label="Minute down">▼</button>
-                    </div>
-                    <!-- AM/PM toggle -->
-                     <button id="period-toggle" aria-label="Toggle AM/PM">
-                      <span id="time-period">PM</span>
-                    </button>
-                  </div>
-                </div><!-- /pickers-row -->
-                <!-- Location (autocomplete="off" removes browser underline) -->
-                 <div class="sheet-location-wrap">
-                  <input class="sheet-input" type="text" placeholder="Search location (optional)"
-                  id="sheet-location" autocomplete="off" autocorrect="off" spellcheck="false"/>
-                  <div id="location-suggestions"></div>
+              <span class="time-separator">:</span>
+              <div class="time-drum">
+                <button class="time-drum-btn" id="min-up">▲</button>
+                <span class="time-drum-value" id="time-minute">00</span>
+                <button class="time-drum-btn" id="min-down">▼</button>
+              </div>
+              <button id="period-toggle">
+                <span id="time-period">PM</span>
+              </button>
+            </div>
+
+          </div><!-- /pickers-row -->
+
+          <!--  Location  -->
+          <div class="sheet-location-wrap">
+            <input class="sheet-input" type="text" placeholder="📍  Search location (optional)" id="sheet-location"
+              autocomplete="off" autocorrect="off" spellcheck="false" />
+            <div id="location-suggestions"></div>
+          </div>
+
+          <!--  PRIORITY + RECURRING ROW -->
+          <div class="priority-recurring-row">
+
+            <!-- LEFT: Priority slider -->
+            <div class="half-block priority-block">
+              <span class="block-label">Priority</span>
+              <div class="priority-scroller-row">
+                <button id="priority-prev" class="priority-arrow">&#8592;</button>
+                <div id="priority-track" data-priority="medium">
+                  <div class="priority-dot" style="left:0%"></div>
+                  <div class="priority-dot" style="left:50%"></div>
+                  <div class="priority-dot" style="left:100%"></div>
+                  <div id="priority-handle"></div>
                 </div>
-                <!-- Priority scroller -->
-                 <div class="priority-scroller">
-                  <span class="priority-scroller-label">Priority</span>
-                  <div class="priority-scroller-row">
-                    <button id="priority-prev" class="priority-arrow" aria-label="Lower priority">&#8592;</button>
-                    <div id="priority-track" data-priority="medium">
-                      <!-- Snap point dots -->
-                       <div class="priority-dot-high"></div>
-                       <div class="priority-dot-med"></div>
-                       <div class="priority-dot-low"></div>
-                       <!-- Draggable handle -->
-                        <div id="priority-handle"></div>
-                      </div>
-                      <button id="priority-next" class="priority-arrow" aria-label="Higher priority">&#8594;</button>
-                      <span id="priority-label">Medium</span>
-                    </div>
-                  </div>
-                  <!-- Notes -->
-                   <textarea class="sheet-input" rows="2" placeholder="Notes (optional)" id="sheet-notes"></textarea>
-                   <!-- Save -->
-                    <button class="sheet-save-button" id="sheet-save">Add to Schedule</button>
-                  </div>
+                <button id="priority-next" class="priority-arrow">&#8594;</button>
+              </div>
+              <span id="priority-label">🟡 Medium</span>
+            </div>
+            <div class="half-divider"></div>
+            <!-- RIGHT: Recurring -->
+            <div class="half-block recurring-block">
+              <div class="recurring-top-row">
+                <span class="block-label">Recurring</span>
+                <!-- Toggle switch -->
+                <label class="toggle-switch" aria-label="Enable recurring">
+                  <input type="checkbox" id="recurring-toggle" />
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+
+              <!-- Recur options — hidden until toggle is on -->
+              <div id="recurring-options" class="recurring-options" style="display:none;">
+                <div class="recur-freq-row">
+                  <button class="recur-freq-btn active" data-freq="daily">Daily</button>
+                  <button class="recur-freq-btn" data-freq="weekly">Weekly</button>
+                  <button class="recur-freq-btn" data-freq="custom">Custom</button>
+                </div>
+
+                <!-- Weekly: pick days -->
+                <div id="recur-days-row" class="recur-days-row" style="display:none;">
+                  <button class="recur-day-btn" data-day="0">S</button>
+                  <button class="recur-day-btn" data-day="1">M</button>
+                  <button class="recur-day-btn" data-day="2">T</button>
+                  <button class="recur-day-btn" data-day="3">W</button>
+                  <button class="recur-day-btn" data-day="4">T</button>
+                  <button class="recur-day-btn" data-day="5">F</button>
+                  <button class="recur-day-btn" data-day="6">S</button>
+                </div>
+
+                <!-- Custom: every N days/weeks -->
+                <div id="recur-custom-row" class="recur-custom-row" style="display:none;">
+                  <span class="recur-custom-label">Every</span>
+                  <input type="number" id="recur-interval" class="recur-interval-input" value="1" min="1" max="99" />
+                  <select id="recur-unit" class="recur-unit-select">
+                    <option value="days">days</option>
+                    <option value="weeks">weeks</option>
+                    <option value="months">months</option>
+                  </select>
                 </div>
               </div>
             </div>
-          </section>
-        </main>
-        <!-- Leaflet.js -->
-         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<!-- DAYMAP SCRIPTS-->
-     <script src="js/data.js"></script>
-     <script src="js/tasks.js"></script>
-     <script src="js/timeline.js"></script>
-     <script src="js/parser.js"></script>
-     <script src="js/sheet.js"></script>
-     <script src="js/map.js"></script>
-     <script src="js/app.js"></script>
-<script>lucide.createIcons();</script>
+
+          </div><!-- /priority-recurring-row -->
+
+          <!--  Notes  -->
+          <textarea class="sheet-input" rows="2" placeholder="Notes (optional)" id="sheet-notes"></textarea>
+
+          <!--  Save  -->
+          <button class="sheet-save-button" id="sheet-save">Add to Schedule</button>
+
+        </div><!-- /sheet-inner -->
+
+
+        <!-- Category Creator Popup-->
+        <div id="category-popup" class="category-popup" aria-hidden="true">
+          <div class="category-popup-card">
+            <div class="category-popup-header">
+              <span class="category-popup-title">New Category</span>
+              <button id="category-popup-close" class="category-popup-close">
+                <i data-lucide="x" width="16" height="16"></i>
+              </button>
+            </div>
+
+            <label class="category-field-label">Name</label>
+            <input type="text" id="new-category-name" class="sheet-input" placeholder="e.g. Health, Hobbies…"
+              autocomplete="off" maxlength="24" />
+
+            <label class="category-field-label">Badge color</label>
+            <div id="color-swatch-grid" class="color-swatch-grid">
+              <!-- 12 preset swatches + custom hex input -->
+              <button class="color-swatch selected" data-color="#2563EB" style="background:#2563EB;"
+                title="Blue"></button>
+              <button class="color-swatch" data-color="#7C3AED" style="background:#7C3AED;" title="Violet"></button>
+              <button class="color-swatch" data-color="#DB2777" style="background:#DB2777;" title="Pink"></button>
+              <button class="color-swatch" data-color="#EF4444" style="background:#EF4444;" title="Red"></button>
+              <button class="color-swatch" data-color="#F97316" style="background:#F97316;" title="Orange"></button>
+              <button class="color-swatch" data-color="#FBBF24" style="background:#FBBF24;" title="Yellow"></button>
+              <button class="color-swatch" data-color="#10B981" style="background:#10B981;" title="Emerald"></button>
+              <button class="color-swatch" data-color="#06B6D4" style="background:#06B6D4;" title="Cyan"></button>
+              <button class="color-swatch" data-color="#64748B" style="background:#64748B;" title="Slate"></button>
+              <button class="color-swatch" data-color="#78716C" style="background:#78716C;" title="Stone"></button>
+              <button class="color-swatch" data-color="#000000" style="background:#000000;" title="Black"></button>
+              <!-- Custom color swatch — opens native color picker -->
+              <label class="color-swatch color-swatch-custom" title="Custom color">
+                <i data-lucide="pipette" width="14" height="14"></i>
+                <input type="color" id="custom-color-input" value="#2563EB" />
+              </label>
+            </div>
+
+            <!-- Live preview of badge -->
+            <div class="category-preview-row">
+              <span class="category-preview-label">Preview:</span>
+              <span id="category-preview-badge" class="category-preview-badge">
+                Category
+              </span>
+            </div>
+
+            <button id="category-create-btn" class="category-create-btn">
+              Create Category
+            </button>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+  </main>
+  <!-- Leaflet.js -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- DAYMAP SCRIPTS-->
+  <script src="js/data.js"></script>
+  <script src="js/tasks.js"></script>
+  <script src="js/timeline.js"></script>
+  <script src="js/categories.js"></script>
+  <script src="js/parser.js"></script>
+  <script src="js/sheet.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/app.js"></script>
+  <script>lucide.createIcons();</script>
 </body>
+
 </html>
