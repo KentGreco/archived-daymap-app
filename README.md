@@ -1,10 +1,30 @@
-# DAYMAP
+<div align="center">
+  
+### ⚠️       Archived Project       ⚠️
+</div>
 
-![Status](https://img.shields.io/badge/status-in%20development-blue)
-![Stack](https://img.shields.io/badge/stack-HTML%20%7C%20CSS%20%7C%20JS%20%7C%20Java-orange)
-![Competition](https://img.shields.io/badge/CAC-Maryland%202nd%20District%202026-green)
+This repository represents an early prototype and is no longer under active development. It is preserved to document my learning process and early design exploration. The README after my reflection shows the project as it existed during development.
+
+<div align="center">
+  
+### Reflection: What I Learned
+</div>
+
+- Designing responsive layouts using HTML and CSS
+- Embedding OpenStreetMap into a web application
+- Planning interactions between UI components
+- Breaking large software ideas into smaller milestones
+
+This project also taught me the importance of defining an achievable project scope before beginning development.
 
 ---
+<br>
+
+# DAYMAP
+
+![Archived](https://img.shields.io/badge/status-archived-lightgrey)
+![Stack](https://img.shields.io/badge/stack-HTML%20%7C%20CSS%20%7C%20JS%20%7C%20Java-orange)
+![Competition](https://img.shields.io/badge/CAC-Maryland%202nd%20District%202026-green)
 
 *An application project built in progress for the upcoming 2026 Congressional App Challenge (MD-02)*
 
@@ -14,7 +34,7 @@ Many people like ourselves have find it hard juggling between multiple different
 
 Thats why we built DAYMAP. 
 
-DAYMAP is a privacy-first, full-stack daily life organizer app that combines personal task management, real-time map visualization, and driving / public transportation route optimization in a single coherent interface.
+DAYMAP is a daily life organizer app that combines personal task management, real-time map visualization, and driving / public transportation route optimization in a single coherent interface.
 
 **Essentially, DAYMAP puts all of your daily logistics in one place**
 
@@ -39,7 +59,7 @@ That's it. That's the whole idea. One app that knows your schedule **AND** knows
 
 ---
 
-## Tech Stack
+## Planned Tech Stack
 
 ### Frontend
 | Tech | Purpose |
