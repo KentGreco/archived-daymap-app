@@ -3,7 +3,7 @@
 ### ⚠️       Archived Project       ⚠️
 </div>
 
-This repository represents an early prototype and is no longer under active development. It is preserved to document my learning process and early design exploration. The README after my reflection shows the project as it existed during development.
+This repository represents an early prototype and is no longer under active development. It is preserved to document my learning process and early design exploration. The README after my reflection and screenshots shows the project as it existed during development.
 
 <div align="center">
   
@@ -16,6 +16,19 @@ This repository represents an early prototype and is no longer under active deve
 - Breaking large software ideas into smaller milestones
 
 This project also taught me the importance of defining an achievable project scope before beginning development.
+
+<div align="center">
+  
+### Screenshots: What It Looked Like
+</div>
+
+Here are a few screenshots showing what I completed before archiving the project.
+
+<img src="images/screenshot1.png" width="600" alt="Screenshot 1">
+<br>
+<img src="images/screenshot2.png" width="600" alt="Screenshot 2">
+<br>
+<img src="images/screenshot3.png" width="600" alt="Screenshot 3">
 
 ---
 <br>
